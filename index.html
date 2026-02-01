@@ -548,7 +548,7 @@
         </div>
     </aside>
 
-    <main class="lg:ml-[100px] pt-12 lg:pt-0">
+    <main class="lg:ml-[100px] lg:pt-0">
         <!-- Hero Section -->
         <section id="home" class="relative h-[100vh] flex items-center justify-center overflow-hidden bg-black">
             <div class="absolute inset-0">
@@ -559,13 +559,13 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-[#0d0d12]/60 via-transparent to-[#0d0d12]/30"></div>
             </div>
 
-            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-16 lg:pt-0">
                 <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-rose-600/10 border border-rose-500/20 text-rose-500 text-xs font-semibold uppercase tracking-widest mb-6">Available
+                    class="inline-block px-4 py-1.5 rounded-full bg-rose-600/10 border border-rose-500/20 text-rose-500 text-xs font-semibold uppercase tracking-widest mb-4 lg:mb-6">Available
                     for new projects</span>
-                <h1 class="text-5xl md:text-8xl font-bold text-white mb-6 tracking-tight">Hi, I'm <span id="typewriter"
-                        class="text-rose-600">Jaxx</span><span class="typewriter-cursor"></span></h1>
-                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                <h1 class="text-5xl md:text-8xl font-bold text-white mb-4 lg:mb-6 tracking-tight">Hi, I'm <span
+                        id="typewriter" class="text-rose-600">Jaxx</span><span class="typewriter-cursor"></span></h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-6 lg:mb-10 max-w-2xl mx-auto leading-relaxed">
                     Crafting exceptional digital experiences as a <span class="text-white font-medium">Full Stack
                         Developer</span> specialized in building high-performance systems.
                 </p>
@@ -954,9 +954,9 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-32 px-6 lg:px-20 bg-[#121218] reveal">
+        <section id="contact" class="py-12 lg:py-32 px-6 lg:px-20 bg-[#121218] reveal">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-20">
+                <div class="text-center mb-8 lg:mb-20">
                     <h2 class="section-title text-4xl md:text-5xl font-bold text-white inline-block"
                         data-heading="Get In Touch">My Details</h2>
                 </div>
@@ -2046,6 +2046,61 @@
                 setTimeout(() => toast.remove(), 500);
             }, 3000);
         }
+    </script>
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top"
+        class="fixed bottom-8 right-8 z-[190] w-14 h-14 bg-gradient-to-br from-rose-600 to-rose-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-rose-600/30 translate-y-20 opacity-0 transition-all duration-500 hover:scale-110 hover:shadow-rose-600/50 cursor-pointer pointer-events-none border border-white/10 glass">
+        <i class="uil uil-arrow-up text-2xl"></i>
+    </button>
+
+    <script>
+        // ... (Previous scripts) ...
+
+        // Scroll to Top Logic
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            } else {
+                scrollToTopBtn.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }
+        });
+
+        // Custom smooth scroll function
+        const smoothScrollToTop = () => {
+            const startPosition = window.pageYOffset;
+            const distance = -startPosition;
+            const duration = 1000; // 1 second duration for a premium feel
+            let start = null;
+
+            const animation = (currentTime) => {
+                if (!start) start = currentTime;
+                const timeElapsed = currentTime - start;
+
+                // Ease In Out Cubic function for smooth acceleration and deceleration
+                const ease = (t, b, c, d) => {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t * t + b;
+                    t -= 2;
+                    return c / 2 * (t * t * t + 2) + b;
+                };
+
+                const nextScroll = ease(timeElapsed, startPosition, distance, duration);
+
+                window.scrollTo(0, nextScroll);
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                } else {
+                    window.scrollTo(0, 0); // Ensure we land exactly at 0
+                }
+            };
+
+            requestAnimationFrame(animation);
+        };
+
+        scrollToTopBtn.addEventListener('click', smoothScrollToTop);
     </script>
     <div id="toast-container" class="fixed bottom-8 right-8 z-[200] flex flex-col gap-4 pointer-events-none"></div>
 </body>
