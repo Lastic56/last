@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jaxx | Full Stack Developer & AI Architect</title>
+    <title>Jaxx | Full Stack Developer & AI Architect - Premium Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -448,6 +448,362 @@
             border: 1px solid rgba(225, 29, 72, 0.2);
             box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
+
+        /* ========== SUPROSE PREMIUM ENHANCEMENTS ========== */
+
+        /* Premium Particle System */
+        .premium-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.8), transparent);
+            border-radius: 50%;
+            animation: float-particle 15s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes float-particle {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced Glassmorphism with Depth */
+        .glass-premium {
+            background: rgba(13, 13, 18, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Premium Card Hover Effect */
+        .premium-card {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg,
+                    rgba(225, 29, 72, 0.5),
+                    rgba(147, 51, 234, 0.5),
+                    rgba(79, 70, 229, 0.5));
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .premium-card:hover::before {
+            opacity: 1;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 20px 60px -10px rgba(225, 29, 72, 0.3),
+                0 0 40px rgba(225, 29, 72, 0.1);
+        }
+
+        /* Smooth Page Transitions */
+        .page-transition {
+            animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Premium Button with Ripple Effect */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-premium::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-premium:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(225, 29, 72, 0.4);
+        }
+
+        /* Premium Text Gradient Animation */
+        .text-premium {
+            background: linear-gradient(135deg,
+                    #e11d48 0%,
+                    #f43f5e 25%,
+                    #9333ea 50%,
+                    #4f46e5 75%,
+                    #e11d48 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: premium-gradient 8s ease infinite;
+        }
+
+        @keyframes premium-gradient {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Enhanced Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce-slow 2s infinite;
+        }
+
+        @keyframes bounce-slow {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Premium Shadow Layers */
+        .shadow-premium {
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.1),
+                0 16px 32px rgba(0, 0, 0, 0.1),
+                0 32px 64px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Magnetic Hover Effect */
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Premium Loading Animation */
+        .loading-premium {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        .loading-premium::before,
+        .loading-premium::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #e11d48;
+        }
+
+        .loading-premium::before {
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-premium::after {
+            width: 30px;
+            height: 30px;
+            top: 10px;
+            left: 10px;
+            border-top-color: #9333ea;
+            animation: spin 0.7s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Enhanced Typewriter with Glow */
+        #typewriter {
+            text-shadow:
+                0 0 10px rgba(225, 29, 72, 0.5),
+                0 0 20px rgba(225, 29, 72, 0.3),
+                0 0 30px rgba(225, 29, 72, 0.2);
+        }
+
+        /* Premium Skill Bar Animation */
+        .skill-progress {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.3),
+                    transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(400%);
+            }
+        }
+
+        /* Premium Project Card Glow */
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .project-card:hover {
+            box-shadow:
+                0 0 20px rgba(225, 29, 72, 0.3),
+                0 0 40px rgba(225, 29, 72, 0.2),
+                0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Smooth Section Transitions */
+        section {
+            animation: section-fade 0.8s ease-out;
+        }
+
+        @keyframes section-fade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Premium Cursor Trail Effect */
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.3), transparent);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out;
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .premium-card:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+
+            .particle {
+                width: 2px;
+                height: 2px;
+            }
+        }
+
+        /* Premium Focus States */
+        *:focus-visible {
+            outline: 2px solid rgba(225, 29, 72, 0.5);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Premium Selection */
+        ::selection {
+            background: rgba(225, 29, 72, 0.3);
+            color: white;
+        }
+
+        /* Enhanced Backdrop Blur Support */
+        @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+            .glass-premium {
+                background: rgba(13, 13, 18, 0.6);
+            }
+        }
     </style>
     <script type="importmap">
 {
@@ -643,7 +999,7 @@
 
         <!-- Minimized Announcement Icon -->
         <button id="minimized-announcement"
-            class="fixed top-24 right-6 lg:right-12 z-40 w-12 h-12 bg-gradient-to-r from-rose-600 to-purple-600 rounded-full flex items-center justify-center text-white text-xl shadow-xl shadow-rose-600/30 hover:scale-110 active:scale-95 transition-all duration-300 opacity-0 translate-x-10 pointer-events-none group">
+            class="fixed top-20 right-4 lg:top-24 lg:right-12 z-40 w-12 h-12 bg-gradient-to-r from-rose-600 to-purple-600 rounded-full flex items-center justify-center text-white text-xl shadow-xl shadow-rose-600/30 hover:scale-110 active:scale-95 transition-all duration-300 opacity-0 translate-x-10 pointer-events-none group">
             <div class="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full animate-bounce shadow-sm"></div>
             <i class="uil uil-bell animate-swing"></i>
             <!-- Tooltip -->
@@ -2103,6 +2459,238 @@
         scrollToTopBtn.addEventListener('click', smoothScrollToTop);
     </script>
     <div id="toast-container" class="fixed bottom-8 right-8 z-[200] flex flex-col gap-4 pointer-events-none"></div>
+
+    <!-- ========== SUPROSE PREMIUM JAVASCRIPT ========== -->
+    <script>
+        // Premium Particle System
+        function createPremiumParticles() {
+            const hero = document.querySelector('#home');
+            if (!hero) return;
+
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'premium-particles';
+            hero.appendChild(particlesContainer);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                const tx = (Math.random() - 0.5) * 200;
+                const ty = (Math.random() - 0.5) * 200;
+
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Premium Cursor Trail
+        let cursorTrails = [];
+        function createCursorTrail(e) {
+            if (window.innerWidth < 768) return; // Disable on mobile
+
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
+
+            cursorTrails.push(trail);
+
+            setTimeout(() => {
+                trail.style.transform = 'scale(0)';
+                trail.style.opacity = '0';
+            }, 10);
+
+            setTimeout(() => {
+                trail.remove();
+                cursorTrails = cursorTrails.filter(t => t !== trail);
+            }, 500);
+
+            // Limit trails
+            if (cursorTrails.length > 10) {
+                const oldest = cursorTrails.shift();
+                oldest?.remove();
+            }
+        }
+
+        // Throttle cursor trail
+        let lastTrailTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastTrailTime > 50) {
+                createCursorTrail(e);
+                lastTrailTime = now;
+            }
+        });
+
+        // Magnetic Hover Effect for Buttons
+        function addMagneticEffect() {
+            const magneticElements = document.querySelectorAll('.btn-premium, .magnetic');
+
+            magneticElements.forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    const moveX = x * 0.2;
+                    const moveY = y * 0.2;
+
+                    el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    el.style.transform = 'translate(0, 0)';
+                });
+            });
+        }
+
+        // Enhanced Scroll Animations
+        function enhancedScrollAnimations() {
+            const elements = document.querySelectorAll('.reveal, .premium-card');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('active', 'page-transition');
+                        }, index * 100);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Premium Page Load Animation
+        function premiumPageLoad() {
+            document.body.style.opacity = '0';
+
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    document.body.style.transition = 'opacity 0.8s ease';
+                    document.body.style.opacity = '1';
+                }, 100);
+            });
+        }
+
+        // Add Premium Classes to Buttons
+        function enhanceButtons() {
+            const buttons = document.querySelectorAll('a[href^="#"], button:not(#scroll-to-top):not(.skill-toggle):not(.close-card)');
+            buttons.forEach(btn => {
+                if (!btn.classList.contains('btn-premium')) {
+                    btn.classList.add('btn-premium');
+                }
+            });
+        }
+
+        // Add Premium Card Classes
+        function enhanceCards() {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (!card.classList.contains('premium-card')) {
+                    card.classList.add('premium-card');
+                }
+            });
+        }
+
+        // Parallax Effect on Scroll
+        function premiumParallax() {
+            const parallaxElements = document.querySelectorAll('.premium-card, .reveal');
+
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+
+                parallaxElements.forEach((el, index) => {
+                    const speed = 0.05 + (index % 3) * 0.02;
+                    const yPos = -(scrolled * speed);
+
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.style.transform = `translateY(${yPos}px)`;
+                    }
+                });
+            });
+        }
+
+        // Smooth Anchor Scrolling with Offset
+        function smoothAnchorScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+
+                    if (target) {
+                        const offset = 80;
+                        const targetPosition = target.offsetTop - offset;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Premium Skill Bar Animations
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0';
+
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 200);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            skillBars.forEach(bar => observer.observe(bar));
+        }
+
+        // Initialize All Premium Features
+        function initPremiumFeatures() {
+            createPremiumParticles();
+            addMagneticEffect();
+            enhancedScrollAnimations();
+            enhanceButtons();
+            enhanceCards();
+            smoothAnchorScroll();
+            animateSkillBars();
+
+            console.log('%c✨ SUPROSE Premium Portfolio Loaded ✨', 'color: #e11d48; font-size: 20px; font-weight: bold;');
+            console.log('%cBuilt with premium features and world-class design', 'color: #9333ea; font-size: 12px;');
+        }
+
+        // Run on DOM Content Loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPremiumFeatures);
+        } else {
+            initPremiumFeatures();
+        }
+
+        // Add scroll indicator to hero
+        const hero = document.querySelector('#home');
+        if (hero) {
+            const scrollIndicator = document.createElement('div');
+            scrollIndicator.className = 'scroll-indicator';
+            scrollIndicator.innerHTML = '<i class="uil uil-angle-down text-3xl text-white/50"></i>';
+            hero.appendChild(scrollIndicator);
+        }
+    </script>
 </body>
 
 </html>
