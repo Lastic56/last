@@ -241,51 +241,44 @@
             box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
         }
 
-        .case-study-link:hover .uil-arrow-right {
+        .details-link:hover .uil-arrow-right {
             transform: translateX(12px);
         }
 
-        .case-study-link:hover {
+        .details-link:hover {
             color: var(--rose-500);
             filter: brightness(1.2);
         }
 
-        /* Flip Card Logic */
+        /* Simplified Card Logic (No Flip) - Smooth Hover */
         .project-card {
-            perspective: 2000px;
             background-color: transparent;
-            height: 450px;
+            height: 380px;
+            cursor: pointer;
+            perspective: 1000px;
         }
 
-        .project-card.is-flipped {
-            height: auto !important;
-            min-height: 450px !important;
-        }
-
-        /* Mobile project cards - make them smaller */
+        /* Mobile-Specific Compacting - Fits in one proper window */
         @media (max-width: 768px) {
             .project-card {
-                height: 320px;
+                height: 280px !important;
             }
 
-            .card-front .p-8 {
+            .card-front .p-4 {
                 padding: 1rem !important;
             }
 
             .card-front h3 {
-                font-size: 1rem !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 0.9rem !important;
+                margin-bottom: 0.25rem !important;
             }
 
-            .card-front .case-study-link {
-                font-size: 0.75rem !important;
+            .card-front .details-link {
+                font-size: 0.7rem !important;
             }
-        }
 
-        /* Mobile flipped cards - adjust height */
-        @media (max-width: 768px) {
-            .project-card.is-flipped {
-                min-height: 400px !important;
+            .card-front span {
+                font-size: 9px !important;
             }
         }
 
@@ -293,72 +286,27 @@
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-
-        .project-card.is-flipped .project-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .card-front,
-        .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease;
             border-radius: 1.5rem;
             overflow: hidden;
-        }
-
-        .card-front {
             background-color: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .card-back {
-            background-color: #1a1a24;
-            transform: rotateY(180deg);
-            border: 2px solid var(--rose-600);
+        .project-card:hover .project-card-inner {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+            border-color: rgba(225, 29, 72, 0.3);
+        }
+
+        .card-front {
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            padding: 2rem;
-            z-index: 10;
-            height: auto !important;
-            min-height: 100%;
         }
 
-        /* Mobile project cards - make them smaller */
-        @media (max-width: 768px) {
-            .project-card {
-                height: 320px;
-            }
-
-            .card-front .p-8 {
-                padding: 1rem !important;
-            }
-
-            .card-front h3 {
-                font-size: 1rem !important;
-                margin-bottom: 0.5rem !important;
-            }
-
-            .card-front .case-study-link {
-                font-size: 0.75rem !important;
-            }
-
-            .card-back {
-                padding: 1rem !important;
-            }
-        }
-
-        /* Mobile flipped cards - adjust height */
-        @media (max-width: 768px) {
-            .project-card.is-flipped {
-                min-height: 550px !important;
-            }
-        }
+        /* Purged legacy flip and mobile styles */
 
         .reveal {
             opacity: 0;
@@ -614,6 +562,24 @@
             50% {
                 background-position: 100% 50%;
             }
+        }
+
+        /* Staggered Entrance Animation */
+        @keyframes staggerFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-in {
+            animation: staggerFadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
         }
 
         /* Enhanced Scroll Indicator */
@@ -999,7 +965,7 @@
 
         <!-- Minimized Announcement Icon -->
         <button id="minimized-announcement"
-            class="fixed top-20 right-4 lg:top-24 lg:right-12 z-40 w-12 h-12 bg-gradient-to-r from-rose-600 to-purple-600 rounded-full flex items-center justify-center text-white text-xl shadow-xl shadow-rose-600/30 hover:scale-110 active:scale-95 transition-all duration-300 opacity-0 translate-x-10 pointer-events-none group">
+            class="fixed bottom-24 right-8 z-40 w-12 h-12 bg-gradient-to-r from-rose-600 to-purple-600 rounded-full flex items-center justify-center text-white text-xl shadow-xl shadow-rose-600/30 hover:scale-110 active:scale-95 transition-all duration-300 opacity-0 translate-y-20 pointer-events-none group">
             <div class="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full animate-bounce shadow-sm"></div>
             <i class="uil uil-bell animate-swing"></i>
             <!-- Tooltip -->
@@ -1074,8 +1040,8 @@
                                 <div class="flex items-center gap-4">
                                     <div
                                         class="w-10 h-10 bg-[#FF1E56]/10 rounded-lg flex items-center justify-center text-[#FF1E56]">
-                                        <i class="uil uil-arrow-down text-sm transition-transform skill-arrow"
-                                            style="transform: rotate(0deg)"></i>
+                                        <i class="uil uil-angle-right text-sm transition-transform skill-arrow"
+                                            style="transform: rotate(90deg)"></i>
                                     </div>
                                     <div class="text-left">
                                         <h4 class="text-white font-bold text-lg">Frontend Developer</h4>
@@ -1094,8 +1060,8 @@
                                         <span class="text-[#FF1E56] text-sm">95%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 95%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="95%" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
@@ -1104,8 +1070,8 @@
                                         <span class="text-[#FF1E56] text-sm">90%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 90%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="90%" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
@@ -1114,8 +1080,8 @@
                                         <span class="text-[#FF1E56] text-sm">85%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 85%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="85%" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
@@ -1124,8 +1090,8 @@
                                         <span class="text-[#FF1E56] text-sm">88%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 88%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="88%" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1143,7 +1109,7 @@
                                     </div>
                                     <div class="text-left">
                                         <h4 class="text-white font-bold text-lg">UI/UX Design</h4>
-                                        <p class="text-[#CCCCCC] text-xs mt-1">Click to expand skills ↓</p>
+                                        <p class="text-[#CCCCCC] text-xs mt-1">Click to expand skills</p>
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -1158,8 +1124,8 @@
                                         <span class="text-[#FF1E56] text-sm">92%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 92%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="92%" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
@@ -1168,8 +1134,8 @@
                                         <span class="text-[#FF1E56] text-sm">85%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 85%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="85%" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
@@ -1178,8 +1144,8 @@
                                         <span class="text-[#FF1E56] text-sm">80%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 80%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="80%" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1197,7 +1163,7 @@
                                     </div>
                                     <div class="text-left">
                                         <h4 class="text-white font-bold text-lg">Backend Developer</h4>
-                                        <p class="text-[#CCCCCC] text-xs mt-1">Click to expand skills ↓</p>
+                                        <p class="text-[#CCCCCC] text-xs mt-1">Click to expand skills</p>
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -1212,8 +1178,8 @@
                                         <span class="text-[#FF1E56] text-sm">90%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 90%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="90%" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
@@ -1222,8 +1188,8 @@
                                         <span class="text-[#FF1E56] text-sm">85%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 85%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="85%" style="width: 0%"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
@@ -1232,8 +1198,8 @@
                                         <span class="text-[#FF1E56] text-sm">88%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 88%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="88%" style="width: 0%"></div>
                                     </div>
                                 </div>
 
@@ -1243,8 +1209,8 @@
                                         <span class="text-[#FF1E56] text-sm">90%</span>
                                     </div>
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
-                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-500 skill-progress"
-                                            style="width: 90%"></div>
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="90%" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1263,14 +1229,15 @@
                 </div>
 
                 <div class="flex justify-center flex-wrap gap-4 mb-16" id="filter-buttons">
-                    <button class="filter-btn px-8 py-2.5 rounded-full font-medium gradient-border-btn"
+                    <button
+                        class="filter-btn px-8 py-2.5 rounded-full font-medium bg-gradient-to-r from-rose-600 to-purple-600 text-white shadow-lg shadow-rose-600/20"
                         data-filter="all">All</button>
                     <button
                         class="filter-btn px-8 py-2.5 rounded-full font-medium text-gray-400 bg-white/5 hover:bg-white/10 border border-transparent"
                         data-filter="web">Web</button>
                     <button
                         class="filter-btn px-8 py-2.5 rounded-full font-medium text-gray-400 bg-white/5 hover:bg-white/10 border border-transparent"
-                        data-filter="app">App</button>
+                        data-filter="app">Apps</button>
                     <button
                         class="filter-btn px-8 py-2.5 rounded-full font-medium text-gray-400 bg-white/5 hover:bg-white/10 border border-transparent"
                         data-filter="software">Software</button>
@@ -1289,7 +1256,7 @@
 
                     <!-- Projects Carousel -->
                     <div class="overflow-hidden mx-8">
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-transform duration-300 ease-in-out"
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 transition-transform duration-300 ease-in-out"
                             id="projects-grid">
                             <!-- Projects will be injected here via JS -->
                         </div>
@@ -1302,7 +1269,7 @@
                     </button>
                 </div>
 
-                <!-- Desktop Grid (unchanged) -->
+                <!-- Desktop Grid -->
                 <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid-desktop">
                     <!-- Projects will be injected here via JS -->
                 </div>
@@ -1450,13 +1417,16 @@
     </main>
 
     <!-- Project Modal Template -->
-    <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6">
-        <div class="absolute inset-0 bg-black/95 backdrop-blur-xl" id="modal-overlay"></div>
-        <div
-            class="relative bg-[#121218] w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/10 shadow-2xl p-8 lg:p-12">
-            <button id="close-modal" class="absolute top-6 right-6 text-gray-400 hover:text-white z-[110]"><i
-                    class="uil uil-times text-3xl"></i></button>
-            <div id="modal-content" class="grid lg:grid-cols-2 gap-12">
+    <div id="project-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center p-4 lg:p-6 opacity-0 transition-all duration-500 ease-out backdrop-blur-0">
+        <div class="absolute inset-0 bg-black/80 transition-opacity duration-500 opacity-0" id="modal-overlay"></div>
+        <div id="modal-container"
+            class="relative bg-[#121218]/90 backdrop-blur-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/10 shadow-[0_0_100px_rgba(0,0,0,0.8)] p-8 lg:p-12 transform scale-90 opacity-0 transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1)">
+            <button id="close-modal"
+                class="absolute top-6 right-6 text-gray-400 hover:text-white z-[110] transition-transform hover:rotate-90">
+                <i class="uil uil-times text-3xl"></i>
+            </button>
+            <div id="modal-content" class="flex flex-col gap-6 lg:gap-8">
                 <!-- Content injected via JS -->
             </div>
         </div>
@@ -1825,13 +1795,18 @@
             desktopGrid.innerHTML = '';
 
             filteredProjects.forEach((p, index) => {
-                const card = createProjectCard(p);
+                const card = createProjectCard(p, index);
+                // Add staggered animation delay
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('stagger-in');
 
                 // Mobile: Add to carousel
                 mobileGrid.appendChild(card.cloneNode(true));
 
                 // Desktop: Add to grid
-                const desktopCard = createProjectCard(p);
+                const desktopCard = createProjectCard(p, index);
+                desktopCard.style.animationDelay = `${index * 0.1}s`;
+                desktopCard.classList.add('stagger-in');
                 desktopGrid.appendChild(desktopCard);
             });
 
@@ -1844,7 +1819,7 @@
             spawnPackets();
         };
 
-        const createProjectCard = (p) => {
+        const createProjectCard = (p, index) => {
             const card = document.createElement('div');
             card.className = 'project-card';
 
@@ -1862,39 +1837,17 @@
             if (p.type === 'localai') preview = getLocalAIPreview();
 
             card.innerHTML = `
-                <div class="project-card-inner">
+                <div class="project-card-inner" onclick="openModal(${index})">
                     <div class="card-front">
                         <div class="aspect-video overflow-hidden relative">${preview}</div>
-                        <div class="p-8">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-xs font-semibold text-rose-500 uppercase tracking-widest">${p.category}</span>
-                                <span class="text-xs text-gray-500">${p.date}</span>
+                        <div class="p-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-[10px] font-bold text-rose-500 uppercase tracking-widest">${p.category}</span>
+                                <span class="text-[10px] text-gray-500">${p.date}</span>
                             </div>
-                            <h3 class="text-xl font-bold text-white mb-4 group-hover:text-rose-500 transition-colors">${p.title}</h3>
-                            <div class="case-study-link flex items-center text-rose-500 text-sm font-medium transition-all cursor-pointer">
-                                Show Details <i class="uil uil-arrow-right ml-2 transition-transform"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-back overflow-y-auto">
-                        <button class="close-card absolute top-6 right-6 text-gray-400 hover:text-white z-[200]">
-                            <i class="uil uil-times text-2xl"></i>
-                        </button>
-                        <div class="space-y-6 flex flex-col h-full">
-                            <div>
-                                <span class="text-rose-500 font-semibold text-xs uppercase tracking-widest mb-2 block">Project Insight</span>
-                                <h3 class="text-2xl font-bold text-white mb-4">${p.title}</h3>
-                                <p class="text-gray-400 text-sm leading-relaxed mb-6">${p.desc}</p>
-                            </div>
-                            <div class="mt-auto">
-                                <h4 class="text-white font-bold text-xs mb-3">Technologies</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    ${p.tech.map(t => `<span class="px-2 py-1 bg-rose-600/10 text-rose-500 text-[10px] rounded-full border border-rose-600/20">${t}</span>`).join('')}
-                                </div>
-                                <div class="mt-8 flex gap-4">
-                                    <button onclick="openModal(${JSON.stringify(p).replace(/"/g, '&quot;')})" class="flex-1 py-3 bg-rose-600 text-white rounded-xl text-xs font-bold hover:scale-105 transition-transform">Full View</button>
-                                    ${p.link ? `<a href="${p.link}" target="_blank" class="flex-1 py-3 border border-white/10 text-white rounded-xl text-xs font-bold hover:bg-white/5 transition-all text-center flex items-center justify-center">Visit Site</a>` : `<button class="flex-1 py-3 border border-white/10 text-white rounded-xl text-xs font-bold hover:bg-white/5 transition-all cursor-not-allowed opacity-70">Coming Soon</button>`}
-                                </div>
+                            <h3 class="text-base font-bold text-white mb-2 group-hover:text-rose-500 transition-colors line-clamp-1">${p.title}</h3>
+                            <div class="details-link flex items-center text-rose-500 text-[11px] font-medium transition-all cursor-pointer">
+                                Full View <i class="uil uil-arrow-right ml-2 transition-transform"></i>
                             </div>
                         </div>
                     </div>
@@ -1985,49 +1938,49 @@
                         card.style.display = 'none';
                     }
                 });
-
-                // Setup flip events for visible card
-                const visibleCard = mobileGrid.querySelector('.project-card[style*="block"]');
-                if (visibleCard) {
-                    setupCardEvents(visibleCard);
-                }
             }, 300);
         };
 
         const setupDesktopInteractions = () => {
-            const desktopGrid = document.getElementById('projects-grid-desktop');
-            const cards = desktopGrid.querySelectorAll('.project-card');
-
-            cards.forEach(card => setupCardEvents(card));
+            // Simplified: Handled by inline onclick in renderGrid
         };
 
         const setupCardEvents = (card) => {
-            // Flip event
-            const front = card.querySelector('.card-front');
-            const closeBtn = card.querySelector('.close-card');
-
-            if (front) {
-                front.onclick = () => {
-                    card.classList.add('is-flipped');
-                };
-            }
-
-            if (closeBtn) {
-                closeBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    card.classList.remove('is-flipped');
-                };
-            }
+            // Handled by inline onclick in renderGrid
         };
 
         // Modal Logic
-        const openModal = (p) => {
+        const openModal = (index) => {
+            const p = filteredProjects[index];
             const modal = document.getElementById('project-modal');
+            const overlay = document.getElementById('modal-overlay');
+            const container = document.getElementById('modal-container');
             const content = document.getElementById('modal-content');
+
             modal.classList.remove('hidden');
             modal.classList.add('flex');
 
-            let preview = `<img src="${p.image}" class="w-full h-full object-cover rounded-2xl">`;
+            // Reflow to allow transitions
+            void modal.offsetWidth;
+
+            // Trigger animations
+            modal.classList.remove('opacity-0', 'backdrop-blur-0');
+            modal.classList.add('opacity-100', 'backdrop-blur-md');
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
+            container.classList.remove('scale-90', 'opacity-0');
+            container.classList.add('scale-100', 'opacity-100');
+
+            renderModalContent(index);
+        };
+
+        const renderModalContent = (index) => {
+            const p = filteredProjects[index];
+            const content = document.getElementById('modal-content');
+            const prevIndex = (index - 1 + filteredProjects.length) % filteredProjects.length;
+            const nextIndex = (index + 1) % filteredProjects.length;
+
+            let preview = `<img src="${p.image}" class="w-full h-full object-cover rounded-2xl shadow-2xl">`;
             if (p.type === 'june') preview = getJunePreview(true);
             if (p.type === 'lastic') preview = getLasticPreview(true);
             if (p.type === 'lisbon') preview = getLisbonPreview(true);
@@ -2041,28 +1994,73 @@
             if (p.type === 'localai') preview = getLocalAIPreview(true);
 
             content.innerHTML = `
-                <div class="aspect-video">${preview}</div>
-                <div class="flex flex-col h-full">
-                    <div>
-                        <span class="text-rose-500 font-semibold text-sm uppercase tracking-widest block mb-4">Project Details</span>
-                        <h3 class="text-3xl font-bold text-white mb-6">${p.title}</h3>
-                        <p class="text-gray-400 leading-relaxed mb-8">${p.desc}</p>
-                        <div class="space-y-6">
-                            <div class="flex gap-12">
-                                <div><h4 class="text-white font-bold text-sm">Role</h4><p class="text-gray-500 text-xs">Lead Developer</p></div>
-                                <div><h4 class="text-white font-bold text-sm">Created</h4><p class="text-gray-500 text-xs">${p.date}</p></div>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-sm mb-3">Technologies</h4>
-                                <div class="flex flex-wrap gap-2">${p.tech.map(t => `<span class="px-3 py-1 bg-rose-600/10 text-rose-500 text-xs rounded-full border border-rose-600/20">${t}</span>`).join('')}</div>
-                            </div>
+                <div class="w-full relative group/modal-img stagger-in" style="animation-delay: 0.1s">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 rounded-2xl"></div>
+                    <div class="aspect-video w-full max-h-[300px] lg:max-h-[450px] rounded-2xl overflow-hidden shadow-2xl">
+                        ${preview}
+                    </div>
+                </div>
+                
+                <div class="flex flex-col lg:grid lg:grid-cols-[1fr_auto] lg:gap-12 stagger-in" style="animation-delay: 0.2s">
+                    <div class="flex flex-col">
+                        <span class="text-rose-500 font-semibold text-[10px] lg:text-xs uppercase tracking-widest block mb-2 lg:mb-3">Project Deep-Dive</span>
+                        <h3 class="text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 lg:mb-4 leading-tight">${p.title}</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4 lg:mb-0 text-sm lg:text-base max-w-2xl">${p.desc}</p>
+                    </div>
+
+                    <div class="flex flex-col lg:w-72">
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div><h4 class="text-white font-bold text-[9px] uppercase tracking-tighter opacity-50">Impact</h4><p class="text-white text-[11px] font-medium leading-none mt-1">Lead Architect</p></div>
+                            <div><h4 class="text-white font-bold text-[9px] uppercase tracking-tighter opacity-50">Cycle</h4><p class="text-white text-[11px] font-medium leading-none mt-1">${p.date}</p></div>
+                        </div>
+                        <div class="stagger-in" style="animation-delay: 0.3s">
+                            <h4 class="text-white font-bold text-[10px] mb-2 lg:mb-3 uppercase tracking-widest opacity-30 text-xs">Core Technology</h4>
+                            <div class="flex flex-wrap gap-2">${p.tech.map(t => `<span class="px-3 py-1.5 bg-rose-600/5 text-rose-500 text-[9px] font-bold rounded-lg border border-rose-600/10 glass-premium">${t}</span>`).join('')}</div>
                         </div>
                     </div>
-                    <div class="mt-auto pt-12 flex gap-4">
-                        <button class="flex-1 py-4 bg-rose-600 text-white rounded-xl font-bold hover:scale-105 transition-transform">Case Study</button>
-                        ${p.link ? `<a href="${p.link}" target="_blank" class="flex-1 py-4 border border-white/10 text-white rounded-xl font-bold hover:bg-white/10 transition-all text-center flex items-center justify-center gap-2">Visit Site <i class="uil uil-external-link-alt"></i></a>` : ''}
-                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-white/5 flex flex-row gap-3 lg:gap-4 stagger-in" style="animation-delay: 0.4s">
+                    ${p.link ? `<a href="${p.link}" target="_blank" class="flex-1 py-3 lg:py-4 bg-gradient-to-r from-rose-600 to-rose-500 text-white rounded-xl lg:rounded-2xl text-xs lg:text-sm font-bold hover:scale-[1.03] transition-all text-center flex items-center justify-center gap-2 lg:gap-3 shadow-lg shadow-rose-600/20">Visit Site <i class="uil uil-external-link-alt"></i></a>` : `<button class="flex-1 py-3 lg:py-4 bg-white/5 border border-white/10 text-white/30 rounded-xl lg:rounded-2xl text-xs lg:text-sm font-bold cursor-not-allowed">Coming Soon</button>`}
+                    <button onclick="closeProjectModal()" class="flex-1 py-3 lg:py-4 border border-white/10 text-white rounded-xl lg:rounded-2xl text-xs lg:text-sm font-bold hover:bg-white/5 transition-all">Back to Projects</button>
+                </div>
+
+                <div class="flex justify-center gap-6 pt-4 border-w-5 lg:hidden">
+                    <button onclick="switchProject(${prevIndex})" class="flex items-center gap-2 text-rose-500 font-bold text-[10px] uppercase tracking-widest">
+                        <i class="uil uil-arrow-left"></i> Previous
+                    </button>
+                    <button onclick="switchProject(${nextIndex})" class="flex items-center gap-2 text-rose-500 font-bold text-[10px] uppercase tracking-widest">
+                        Next <i class="uil uil-arrow-right"></i>
+                    </button>
                 </div>`;
+        };
+
+        const switchProject = (index) => {
+            const content = document.getElementById('modal-content');
+            content.classList.add('opacity-0', 'translate-y-4');
+            content.style.transition = 'all 0.4s ease';
+
+            setTimeout(() => {
+                renderModalContent(index);
+                content.classList.remove('opacity-0', 'translate-y-4');
+                // Scroll to top of modal container
+                document.getElementById('modal-container').scrollTo({ top: 0, behavior: 'smooth' });
+            }, 400);
+        };
+
+        const closeProjectModal = () => {
+            const modal = document.getElementById('project-modal');
+            const overlay = document.getElementById('modal-overlay');
+            const container = document.getElementById('modal-container');
+
+            modal.classList.add('opacity-0', 'backdrop-blur-0');
+            overlay.classList.add('opacity-0');
+            container.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 500);
         };
 
         // Filters
@@ -2070,10 +2068,10 @@
             btn.onclick = () => {
                 // Reset all buttons
                 document.querySelectorAll('.filter-btn').forEach(b => {
-                    b.className = 'filter-btn px-8 py-2.5 rounded-full font-medium text-gray-400 bg-white/5 hover:bg-white/10 border border-transparent';
+                    b.className = 'filter-btn px-8 py-2.5 rounded-full font-medium text-gray-400 bg-white/5 hover:bg-white/10 border border-transparent transition-all duration-300';
                 });
-                // Set active button style
-                btn.className = 'filter-btn px-8 py-2.5 rounded-full font-medium gradient-border-btn';
+                // Set active button style with the premium gradient
+                btn.className = 'filter-btn px-8 py-2.5 rounded-full font-medium bg-gradient-to-r from-rose-600 to-purple-600 text-white shadow-lg shadow-rose-600/20 transition-all duration-300';
                 renderGrid(btn.dataset.filter);
             };
         });
@@ -2150,8 +2148,8 @@
         renderGrid();
 
         // Close Modal
-        document.getElementById('close-modal').onclick = () => document.getElementById('project-modal').classList.add('hidden');
-        document.getElementById('modal-overlay').onclick = () => document.getElementById('project-modal').classList.add('hidden');
+        document.getElementById('close-modal').onclick = closeProjectModal;
+        document.getElementById('modal-overlay').onclick = closeProjectModal;
 
         // Typewriter Effect Logic
         const words = ["Jaxx", " a Full Stack Developer"];
@@ -2262,7 +2260,7 @@
                                     arrow.classList.remove('uil-arrow-down');
                                     arrow.classList.add('uil-angle-right');
                                 }
-                                txt.textContent = 'Click to expand skills ↓';
+                                txt.textContent = 'Click to expand skills';
                             }
                         }
                     });
@@ -2276,7 +2274,7 @@
                         arrow.classList.remove('uil-arrow-down');
                         arrow.classList.add('uil-angle-right');
                     }
-                    instructionText.textContent = 'Click to expand skills ↓';
+                    instructionText.textContent = 'Click to expand skills';
                 } else {
                     // Expand
                     content.classList.remove('hidden');
@@ -2286,31 +2284,7 @@
                         arrow.classList.add('uil-arrow-down');
                     }
                     instructionText.textContent = 'Click to collapse skills';
-
-                    // Animate progress bars on expand
-                    const progressBars = content.querySelectorAll('.skill-progress');
-                    progressBars.forEach((bar, index) => {
-                        const width = bar.style.width;
-                        // Reset to 0 for animation
-                        bar.style.width = '0%';
-                        // Animate to actual width with stagger
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, index * 150);
-                    });
                 }
-            });
-        });
-
-        // Initialize progress bars for expanded frontend section
-        document.addEventListener('DOMContentLoaded', () => {
-            const frontendProgressBars = document.querySelectorAll('#frontend-skills .skill-progress');
-            frontendProgressBars.forEach((bar, index) => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, index * 150);
             });
         });
 
@@ -2402,61 +2376,6 @@
                 setTimeout(() => toast.remove(), 500);
             }, 3000);
         }
-    </script>
-    <!-- Scroll to Top Button -->
-    <button id="scroll-to-top"
-        class="fixed bottom-8 right-8 z-[190] w-14 h-14 bg-gradient-to-br from-rose-600 to-rose-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-rose-600/30 translate-y-20 opacity-0 transition-all duration-500 hover:scale-110 hover:shadow-rose-600/50 cursor-pointer pointer-events-none border border-white/10 glass">
-        <i class="uil uil-arrow-up text-2xl"></i>
-    </button>
-
-    <script>
-        // ... (Previous scripts) ...
-
-        // Scroll to Top Logic
-        const scrollToTopBtn = document.getElementById('scroll-to-top');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-            } else {
-                scrollToTopBtn.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-            }
-        });
-
-        // Custom smooth scroll function
-        const smoothScrollToTop = () => {
-            const startPosition = window.pageYOffset;
-            const distance = -startPosition;
-            const duration = 1000; // 1 second duration for a premium feel
-            let start = null;
-
-            const animation = (currentTime) => {
-                if (!start) start = currentTime;
-                const timeElapsed = currentTime - start;
-
-                // Ease In Out Cubic function for smooth acceleration and deceleration
-                const ease = (t, b, c, d) => {
-                    t /= d / 2;
-                    if (t < 1) return c / 2 * t * t * t + b;
-                    t -= 2;
-                    return c / 2 * (t * t * t + 2) + b;
-                };
-
-                const nextScroll = ease(timeElapsed, startPosition, distance, duration);
-
-                window.scrollTo(0, nextScroll);
-
-                if (timeElapsed < duration) {
-                    requestAnimationFrame(animation);
-                } else {
-                    window.scrollTo(0, 0); // Ensure we land exactly at 0
-                }
-            };
-
-            requestAnimationFrame(animation);
-        };
-
-        scrollToTopBtn.addEventListener('click', smoothScrollToTop);
     </script>
     <div id="toast-container" class="fixed bottom-8 right-8 z-[200] flex flex-col gap-4 pointer-events-none"></div>
 
@@ -2648,15 +2567,24 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const width = entry.target.style.width;
-                        entry.target.style.width = '0';
+                        const targetWidth = entry.target.getAttribute('data-width');
 
+                        // Small delay for smoother sequence
                         setTimeout(() => {
-                            entry.target.style.width = width;
-                        }, 200);
+                            entry.target.style.width = targetWidth;
+                        }, 100);
+
+                        // Optionally unobserve if you only want it to animate once
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Reset width when it leaves view so it can animate again
+                        entry.target.style.width = '0%';
                     }
                 });
-            }, { threshold: 0.5 });
+            }, {
+                threshold: 0.1, // Trigger as soon as a small part is visible
+                rootMargin: '0px 0px -50px 0px'
+            });
 
             skillBars.forEach(bar => observer.observe(bar));
         }
@@ -2691,6 +2619,59 @@
             hero.appendChild(scrollIndicator);
         }
     </script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top"
+        class="fixed bottom-8 right-8 z-[190] w-14 h-14 bg-gradient-to-br from-rose-600 to-rose-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-rose-600/30 translate-y-20 opacity-0 transition-all duration-500 hover:scale-110 hover:shadow-rose-600/50 cursor-pointer pointer-events-none border border-white/10 glass">
+        <i class="uil uil-arrow-up text-2xl"></i>
+    </button>
+
+    <script>
+        // Scroll to Top Logic
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            } else {
+                scrollToTopBtn.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }
+        });
+
+        // Custom smooth scroll function
+        const smoothScrollToTop = () => {
+            const startPosition = window.pageYOffset;
+            const distance = -startPosition;
+            const duration = 1000;
+            let start = null;
+
+            const animation = (currentTime) => {
+                if (!start) start = currentTime;
+                const timeElapsed = currentTime - start;
+
+                const ease = (t, b, c, d) => {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t * t + b;
+                    t -= 2;
+                    return c / 2 * (t * t * t + 2) + b;
+                };
+
+                const nextScroll = ease(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, nextScroll);
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                } else {
+                    window.scrollTo(0, 0);
+                }
+            };
+
+            requestAnimationFrame(animation);
+        };
+
+        scrollToTopBtn.addEventListener('click', smoothScrollToTop);
+    </script>
+    <div id="toast-container" class="fixed bottom-8 right-8 z-[200] flex flex-col gap-4 pointer-events-none"></div>
 </body>
 
 </html>
