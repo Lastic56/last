@@ -256,6 +256,9 @@
             height: 380px;
             cursor: pointer;
             perspective: 1000px;
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+            user-select: none;
         }
 
         /* Mobile-Specific Compacting - Fits in one proper window */
@@ -295,8 +298,11 @@
 
         .project-card:hover .project-card-inner {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
-            border-color: rgba(225, 29, 72, 0.3);
+            box-shadow:
+                0 20px 40px -10px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(225, 29, 72, 0.2);
+            border-color: rgba(225, 29, 72, 0.4);
+            outline: none !important;
         }
 
         .card-front {
@@ -304,6 +310,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            outline: none !important;
         }
 
         /* Purged legacy flip and mobile styles */
@@ -692,17 +699,7 @@
             }
         }
 
-        /* Premium Project Card Glow */
-        .project-card {
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .project-card:hover {
-            box-shadow:
-                0 0 20px rgba(225, 29, 72, 0.3),
-                0 0 40px rgba(225, 29, 72, 0.2),
-                0 20px 60px rgba(0, 0, 0, 0.3);
-        }
+        /* Purged redundant project card outer shadow to fix blue line artifact */
 
         /* Smooth Section Transitions */
         section {
@@ -986,8 +983,8 @@
                     <div class="relative group">
                         <div class="absolute -inset-4 bg-rose-600/10 rounded-3xl blur-2xl opacity-50"></div>
                         <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                            <img src="https://z-cdn-media.chatglm.cn/files/94566f56-b85f-4e98-9622-35f502acf320.jpg?auth_key=1864961679-b3ba94fb64c94a5d9420ad413c6fa1f6-0-8eabdd5c2a417e077eee4b0189ad281f"
-                                class="w-full object-cover h-[500px] object-[75%_50%] lg:object-center grayscale hover:grayscale-0 transition-all duration-700">
+                            <img src="C:/Users/Lasti/.gemini/antigravity/brain/21d3c0fa-b1e7-4a61-86bd-7783596461e0/abstract_jaxx_identity_1770151240556.png"
+                                class="w-full object-cover h-[500px] transition-all duration-700 hover:scale-105">
                             <div
                                 class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
                             </div>
@@ -1114,7 +1111,7 @@
                                 </div>
                                 <div class="text-right">
                                     <span class="text-[#FF1E56] text-sm font-medium">92%</span>
-                                    <p class="text-[#CCCCCC] text-xs">3 skills</p>
+                                    <p class="text-[#CCCCCC] text-xs">4 skills</p>
                                 </div>
                             </button>
                             <div class="skill-content hidden border-t border-white/5 p-6 space-y-4" id="design-skills">
@@ -1146,6 +1143,16 @@
                                     <div class="w-full bg-[#2A2A32] rounded-full h-2">
                                         <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
                                             data-width="80%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-white font-medium">Framer</span>
+                                        <span class="text-[#FF1E56] text-sm">70%</span>
+                                    </div>
+                                    <div class="w-full bg-[#2A2A32] rounded-full h-2">
+                                        <div class="bg-[#FF1E56] h-2 rounded-full transition-all duration-1000 skill-progress"
+                                            data-width="70%" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1460,20 +1467,20 @@
 
         // Project Data
         const projects = [
-            { id: '1', title: 'Phoneboxx E-commerce', category: 'web', image: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.phoneboxx.co.za?w=1280', tech: ['React', 'Shopify'], link: 'https://phoneboxx.co.za/', desc: 'Crafted by Jaxx to revolutionize e-commerce, integrating seamless Shopify flows with a custom React frontend for peak performance.', date: 'March 2023' },
-            { id: '2', title: 'Medical Insight', category: 'web', image: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.medical-insight-solutions.co.za?w=1280', tech: ['Next.js', 'PostgreSQL'], link: 'https://www.medical-insight-solutions.co.za', desc: 'A healthcare solution engineered by Jaxx to bridge the gap between patient data and medical records using secure, scalable architecture.', date: 'June 2023' },
-            { id: '3', title: 'VaultFunder Trade', category: 'web', image: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.vaultfunder.trade?w=1280', tech: ['WebSocket', 'D3.js'], link: 'https://www.vaultfunder.trade', desc: 'Jaxx architected this high-frequency dashboard to deliver real-time WebSocket data with precision D3.js visualization for traders.', date: 'September 2023' },
-            { id: '9', title: 'Brokers Select', category: 'web', type: 'brokers', tech: ['Next.js', 'PostgreSQL', 'Tailwind CSS'], link: 'https://brokersselect.com/', desc: 'Designed by Jaxx to simplify the Forex landscape, comparing top brokers through a premium, data-driven fintech interface.', date: 'November 2023' },
-            { id: '7', title: 'Lisbon Hideaway', category: 'web', type: 'lisbon', tech: ['HTML5', 'CSS3', 'JavaScript'], desc: 'A boutique travel platform built by Jaxx, focusing on immersive storytelling and pixel-perfect responsive motion design.', date: 'February 2024' },
-            { id: '4', title: 'June AI', category: 'app', type: 'june', tech: ['Python', 'Neural Networks'], desc: 'Jaxx developed June AI to push neural networking boundaries, creating an app that learns and adapts to user behavior in real-time.', date: 'April 2024' },
-            { id: '5', title: 'Lastic.Dev', category: 'software', type: 'lastic', tech: ['Rust', 'WebAssembly'], desc: 'An elite developer ecosystem forged by Jaxx, leveraging Rust and WASM to deliver blistering performance for modern web apps.', date: 'June 2024' },
-            { id: '6', title: 'Lastic IDE', category: 'software', type: 'ide', tech: ['Python', 'AI-Powered', 'Real-time'], desc: "Jaxx's specialized AI-integrated development environment, optimized for real-time coding efficiency and intelligent auto-completion.", date: 'August 2024' },
-            { id: '8', title: 'Neural Nexus', category: 'ai', type: 'nexus', tech: ['PyTorch', 'Transformer', 'NLP'], desc: 'A powerhouse NLP research project by Jaxx, utilizing Transformer models to process and understand complex human-AI interactions.', date: 'October 2024' },
-            { id: '10', title: 'Nova AI Chatbot', category: 'app', type: 'chatbot', tech: ['OpenAI', 'Next.js', 'Tailwind'], desc: "Jaxx's flagship conversational agent, blending OpenAI intelligence with a custom-built, ultra-responsive Next.js interface.", date: 'November 2024' },
-            { id: '11', title: 'Aura Voice Intelligence', category: 'app', type: 'voice', tech: ['Whisper AI', 'PyTorch', 'FastAPI'], desc: 'A cutting-edge voice assistant system by Jaxx, specializing in Whisper AI integration for flawless speech-to-intent processing.', date: 'December 2024' },
-            { id: '12', title: 'Lastic AGI Agent', category: 'ai', type: 'agent', tech: ['LangChain', 'AutoGPT', 'Python'], desc: "Jaxx's autonomous agentic model designed for complex task orchestration, utilizing advanced LangChain reasoning loops.", date: 'January 2025' },
-            { id: '13', title: 'Aether Avatar', category: 'ai', type: 'avatar', tech: ['Stable Diffusion', 'DeepFace', 'TensorFlow'], desc: 'An AI-powered avatar engine created by Jaxx, using Stable Diffusion to generate hyper-realistic digital identities for the web.', date: 'February 2025' },
-            { id: '14', title: 'Lastic Local AI', category: 'ai', type: 'localai', tech: ['Llama 3', 'GGUF', 'C++', 'Python'], desc: 'A high-performance local inference engine built by Jaxx, allowing users to run large language models entirely offline with zero data leakage.', date: 'March 2025' }
+            { id: '1', title: 'Phoneboxx E-commerce', category: 'web', image: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.phoneboxx.co.za?w=1280', tech: ['React', 'Shopify'], link: 'https://phoneboxx.co.za/', desc: 'Crafted by Jaxx to revolutionize e-commerce, integrating seamless Shopify flows with a custom React frontend for peak performance.', date: 'March 2023', role: 'Team Project' },
+            { id: '2', title: 'Medical Insight', category: 'web', image: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.medical-insight-solutions.co.za?w=1280', tech: ['Next.js', 'PostgreSQL'], link: 'https://www.medical-insight-solutions.co.za', desc: 'A healthcare solution engineered by Jaxx to bridge the gap between patient data and medical records using secure, scalable architecture.', date: 'June 2024', role: 'Team Project' },
+            { id: '3', title: 'VaultFunder Trade', category: 'web', image: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.vaultfunder.trade?w=1280', tech: ['WebSocket', 'D3.js'], link: 'https://www.vaultfunder.trade', desc: 'Jaxx architected this high-frequency dashboard to deliver real-time WebSocket data with precision D3.js visualization for traders.', date: 'September 2024', role: 'Team Project' },
+            { id: '9', title: 'Brokers Select', category: 'web', type: 'brokers', tech: ['Next.js', 'PostgreSQL', 'Tailwind CSS'], link: 'https://brokersselect.com/', desc: 'Designed by Jaxx to simplify the Forex landscape, comparing top brokers through a premium, data-driven fintech interface.', date: 'November 2024', role: 'Team Project' },
+            { id: '7', title: 'Lisbon Hideaway', category: 'web', type: 'lisbon', tech: ['HTML5', 'CSS3', 'JavaScript'], desc: 'A boutique travel platform built by Jaxx, focusing on immersive storytelling and pixel-perfect responsive motion design.', date: 'February 2026', role: 'Solo Architect & Developer' },
+            { id: '4', title: 'June AI', category: 'app', type: 'june', tech: ['Python', 'Neural Networks'], desc: 'Jaxx developed June AI to push neural networking boundaries, creating an app that learns and adapts to user behavior in real-time.', date: 'April 2026', role: 'Solo Architect & Developer' },
+            { id: '5', title: 'Lastic.Dev', category: 'software', type: 'lastic', tech: ['Rust', 'WebAssembly'], desc: 'An elite developer ecosystem forged by Jaxx, leveraging Rust and WASM to deliver blistering performance for modern web apps.', date: 'June 2026', role: 'Solo Architect & Developer' },
+            { id: '6', title: 'Lastic IDE', category: 'software', type: 'ide', tech: ['Python', 'AI-Powered', 'Real-time'], desc: "Jaxx's specialized AI-integrated development environment, optimized for real-time coding efficiency and intelligent auto-completion.", date: 'August 2026', role: 'Solo Architect & Developer' },
+            { id: '8', title: 'Neural Nexus', category: 'ai', type: 'nexus', tech: ['PyTorch', 'Transformer', 'NLP'], desc: 'A powerhouse NLP research project by Jaxx, utilizing Transformer models to process and understand complex human-AI interactions.', date: 'October 2026', role: 'Solo Architect & Developer' },
+            { id: '10', title: 'Nova AI Chatbot', category: 'app', type: 'chatbot', tech: ['OpenAI', 'Next.js', 'Tailwind'], desc: "Jaxx's flagship conversational agent, blending OpenAI intelligence with a custom-built, ultra-responsive Next.js interface.", date: 'November 2026', role: 'Solo Architect & Developer' },
+            { id: '11', title: 'Aura Voice Intelligence', category: 'app', type: 'voice', tech: ['Whisper AI', 'PyTorch', 'FastAPI'], desc: 'A cutting-edge voice assistant system by Jaxx, specializing in Whisper AI integration for flawless speech-to-intent processing.', date: 'December 2026', role: 'Solo Architect & Developer' },
+            { id: '12', title: 'Lastic AGI Agent', category: 'ai', type: 'agent', tech: ['LangChain', 'AutoGPT', 'Python'], desc: "Jaxx's autonomous agentic model designed for complex task orchestration, utilizing advanced LangChain reasoning loops.", date: 'January 2027', role: 'Solo Architect & Developer' },
+            { id: '13', title: 'Aether Avatar', category: 'ai', type: 'avatar', tech: ['Stable Diffusion', 'DeepFace', 'TensorFlow'], desc: 'An AI-powered avatar engine created by Jaxx, using Stable Diffusion to generate hyper-realistic digital identities for the web.', date: 'February 2027', role: 'Solo Architect & Developer' },
+            { id: '14', title: 'Lastic Local AI', category: 'ai', type: 'localai', tech: ['Llama 3', 'GGUF', 'C++', 'Python'], desc: 'A high-performance local inference engine built by Jaxx, allowing users to run large language models entirely offline with zero data leakage.', date: 'March 2027', role: 'Solo Architect & Developer' }
         ];
 
         // Custom Previews
@@ -2010,7 +2017,7 @@
 
                     <div class="flex flex-col lg:w-72">
                         <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div><h4 class="text-white font-bold text-[9px] uppercase tracking-tighter opacity-50">Impact</h4><p class="text-white text-[11px] font-medium leading-none mt-1">Lead Architect</p></div>
+                            <div><h4 class="text-white font-bold text-[9px] uppercase tracking-tighter opacity-50">Impact</h4><p class="text-white text-[11px] font-medium leading-none mt-1">${p.role}</p></div>
                             <div><h4 class="text-white font-bold text-[9px] uppercase tracking-tighter opacity-50">Cycle</h4><p class="text-white text-[11px] font-medium leading-none mt-1">${p.date}</p></div>
                         </div>
                         <div class="stagger-in" style="animation-delay: 0.3s">
